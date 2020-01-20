@@ -2,12 +2,12 @@ import * as React from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import ROUTES from './configs/routes';
 
-import PageExample from './pages/PageExample/PageExample';
+import Home from './pages/Home/Home';
 
 const AppRouter = () => (
   <Router>
     <Switch>
-      <Route path={ROUTES.ROOT} component={PageExample} />
+      <Route path={ROUTES.ROOT} component={Home} />
     </Switch>
   </Router>
 );

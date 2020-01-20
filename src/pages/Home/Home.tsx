@@ -1,18 +1,18 @@
 import * as React from 'react';
 import {useDispatch} from 'react-redux';
 import ComponentExample from '../../components/ComponentExample/ComponentExample';
+import {getBreeds} from '../../store/cats/cats-store';
 
-export default function PageExample() {
+export default function Home() {
   const dispatch = useDispatch();
 
-  const handleClick = () => {
-    dispatch({type: 'TEST'});
-  };
+  React.useEffect(() => {
+    dispatch(getBreeds());
+  }, []);
 
   return (
     <div>
       <ComponentExample/>
-      <button type="button" onClick={handleClick}>reer</button>
     </div>
   );
 }

@@ -1,11 +1,23 @@
-import {all} from 'redux-saga/effects';
+import {all, takeLatest, put, call} from 'redux-saga/effects';
+import {ACTION_TYPES} from './cats-store';
+import {CatsApi} from '../../api/cats-api';
+import {CommonResponse} from '../../models/api';
+import {Breed} from '../../models/cats';
 
-function* getCatsList() {
-  console.log('HiSaga');
+export function* loadBreeds() {
+  const response: CommonResponse<Breed[]> = yield call(CatsApi.loadBreeds);
+
+  if (response.success) {
+    yield put({type: ACTION_TYPES.SET_BREEDS, payload: response.data});
+  }
 }
 
-export default function* () {
+export function* watchBreedsLoad() {
+  yield takeLatest(ACTION_TYPES.GET_BREEDS, loadBreeds);
+}
+
+export function* catsSagas() {
   yield all([
-    getCatsList(),
+    watchBreedsLoad()
   ])
 }

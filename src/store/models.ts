@@ -1,8 +1,8 @@
-import {CatsState} from './cats/cats-reducer';
+import {CatsState} from './cats/cats-store';
 
-export interface ActionType {
+export interface Action {
   type: string;
-  payload: any;
+  payload?: any;
 }
 
 export interface ApplicationState {

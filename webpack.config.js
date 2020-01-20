@@ -111,6 +111,9 @@ module.exports = {
     }),
     new CopyPlugin(),
     new Dotenv(),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(process.env)
+    })
   ],
   devServer: {
     port: PORT,
