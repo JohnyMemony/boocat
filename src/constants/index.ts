@@ -1,5 +1,5 @@
 import URLS from './urls';
 
-export default {
+export const constants = {
   URLS,
 };
