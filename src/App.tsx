@@ -4,6 +4,7 @@ import {Provider} from 'react-redux';
 import Router from './Router';
 import {store} from './store';
 
+import './assets/styles/vendor.scss';
 import './assets/styles/main.scss';
 
 declare var document: Document;

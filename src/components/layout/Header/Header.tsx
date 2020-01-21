@@ -6,8 +6,8 @@ import './Header.scss';
 
 export default function Header() {
   return (
-    <header className="header">
-      <Link to={ROUTES.ROOT} className="header__logo"/>
+    <header className="bc-header">
+      <Link to={ROUTES.ROOT} className="bc-header__logo"/>
     </header>
   );
 }

@@ -1,15 +1,11 @@
 import * as React from 'react';
 import Header from '../Header/Header';
 
-interface Props {
-  children: React.ReactNode;
-}
+import './RootLayout.scss';
 
-export default function RootLayout(props: Props) {
-  const {children} = props;
-
+export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
-    <div className="page">
+    <div className="bc-page">
       <Header />
       {children}
     </div>
