@@ -7,7 +7,7 @@ import {ApplicationState} from '../../../store/models';
 
 export default function BreedList() {
   const dispatch = useDispatch();
-  const catsState = useSelector<ApplicationState, CatsState>(state => state.cats);
+  const catsState = useSelector<ApplicationState, CatsState>(state => state.rCats);
 
   React.useEffect(() => {
     dispatch(getBreeds());

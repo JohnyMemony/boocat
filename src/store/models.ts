@@ -6,5 +6,5 @@ export interface Action {
 }
 
 export interface ApplicationState {
-  cats: CatsState;
+  rCats: CatsState;
 }
