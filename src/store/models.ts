@@ -1,4 +1,5 @@
 import {CatsState} from './cats/cats-store';
+import {LocalState} from './local/local-store';
 
 export interface Action {
   type: string;
@@ -7,4 +8,5 @@ export interface Action {
 
 export interface ApplicationState {
   rCats: CatsState;
+  rLocalData: LocalState;
 }

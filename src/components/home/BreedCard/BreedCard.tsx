@@ -1,17 +1,18 @@
 import * as React from 'react';
 import Truncate from 'react-truncate';
-import {Card, Icon, Image} from 'semantic-ui-react';
+import {Card, Image} from 'semantic-ui-react';
 import {Breed} from '../../../models/cats';
 
 import './BreedCard.scss';
 
-export default function BreedCard({data}: { data: Breed }) {
+export default function BreedCard({data, imageUrl}: { data: Breed; imageUrl: string; }) {
   const {name, origin, description} = data;
 
   return (
     <Card className="bc-breed-card">
       <Image
-        src='https://images.pexels.com/photos/617278/pexels-photo-617278.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=500&w=500'
+        className="bc-breed-card__image"
+        src={imageUrl}
         wrapped ui={false}/>
       <Card.Content>
         <Card.Header>{name}</Card.Header>

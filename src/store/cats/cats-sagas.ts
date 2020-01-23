@@ -1,15 +1,36 @@
-import {all, takeLatest, put, call} from 'redux-saga/effects';
+import {all, takeLatest, put, call, select} from 'redux-saga/effects';
 import {ACTION_TYPES} from './cats-store';
 import {CatsApi} from '../../api/cats-api';
 import {CommonResponse} from '../../models/api';
-import {Breed} from '../../models/cats';
+import {Breed, CatImage} from '../../models/cats';
+import {ApplicationState} from '../models';
+import {setLocalData} from '../local/local-sagas';
+import {FIELDS_NAMES} from '../local/local-store';
+
+export function* loadBreedsPhotos(breeds: Breed[]) {
+  const state: ApplicationState = yield select();
+  const breedsPhotos = state.rLocalData.breedsPhotos;
+
+  if (!breedsPhotos.length) {
+    const breedsPhotosRequests = breeds.map((breed) => call(CatsApi.getImagesByBreedId, breed.id));
+    const photoResponses: CommonResponse<CatImage[]>[] = yield all(breedsPhotosRequests);
+
+    const loadedBreedsPhotos: CatImage[] = photoResponses.map((photoResponse) => {
+      return photoResponse.data[0];
+    });
+
+    yield call(setLocalData, FIELDS_NAMES.BREEDS_PHOTOS, loadedBreedsPhotos);
+  }
+}
 
 export function* loadBreeds() {
-  const response: CommonResponse<Breed[]> = yield call(CatsApi.loadBreeds);
+  const breedsResponse: CommonResponse<Breed[]> = yield call(CatsApi.loadBreeds);
 
-  if (response.success) {
-    yield put({type: ACTION_TYPES.SET_BREEDS, payload: response.data});
+  if (breedsResponse.success) {
+    yield put({type: ACTION_TYPES.SET_BREEDS, payload: breedsResponse.data});
   }
+
+  yield call(loadBreedsPhotos, breedsResponse.data);
 }
 
 export function* watchBreedsLoad() {

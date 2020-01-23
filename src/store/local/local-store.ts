@@ -1,14 +1,19 @@
 import {Action} from '../models';
+import {CatImage} from '../../models/cats';
 
 export const ACTION_TYPES = {
   SET_LOCAL_DATA: 'SET_LOCAL_DATA',
 };
 
-export interface CatsState {
-  breedsPhotos: any;
+export const FIELDS_NAMES = {
+  BREEDS_PHOTOS: 'breedsPhotos'
+};
+
+export interface LocalState {
+  breedsPhotos: CatImage[];
 }
 
-const initialState: CatsState = {
+const initialState: LocalState = {
   breedsPhotos: []
 };
 
@@ -20,18 +25,4 @@ export function localReducer(state = initialState, action: Action) {
   }
 
   return state;
-}
-
-export function setLocalData(key: string, data: any) {
-  return {
-    type: ACTION_TYPES.SET_LOCAL_DATA,
-    payload: {
-      key,
-      data
-    }
-  }
-}
-
-export function setBreedsPhotos(data: any) {
-  return setLocalData('breedsPhotos', data);
 }
