@@ -18,7 +18,7 @@ export class CatsApi {
     return {
       success: false,
       data: null,
-      message: 'Breed loading error'
+      message: 'Breeds list loading error'
     };
   }
 

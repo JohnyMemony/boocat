@@ -3,7 +3,7 @@ import {ACTION_TYPES} from './cats-store';
 import {CatsApi} from '../../api/cats-api';
 import {CommonResponse} from '../../models/api';
 import {Breed, CatImage} from '../../models/cats';
-import {ApplicationState} from '../models';
+import {Action, ApplicationState} from '../models';
 import {setLocalData} from '../local/local-sagas';
 import {FIELDS_NAMES} from '../local/local-store';
 
@@ -28,13 +28,23 @@ export function* loadBreeds() {
 
   if (breedsResponse.success) {
     yield put({type: ACTION_TYPES.SET_BREEDS, payload: breedsResponse.data});
+    yield call(loadBreedsPhotos, breedsResponse.data);
   }
+}
 
-  yield call(loadBreedsPhotos, breedsResponse.data);
+export function* loadBreed(action: Action) {
+  const breedId = action.payload;
+
+  const breedResponse: CommonResponse<CatImage[]> = yield call(CatsApi.getImagesByBreedId, breedId);
+
+  if (breedResponse.success) {
+    yield put({type: ACTION_TYPES.SET_IMAGE, payload: breedResponse.data[0]})
+  }
 }
 
 export function* watchBreedsLoad() {
   yield takeLatest(ACTION_TYPES.GET_BREEDS, loadBreeds);
+  yield takeLatest(ACTION_TYPES.GET_IMAGE, loadBreed);
 }
 
 export function* catsSagas() {
