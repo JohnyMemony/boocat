@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header Header initial RendersProperly 1`] = `
+<header
+  className="bc-header"
+>
+  <a
+    className="bc-header__logo"
+    href="/"
+    onClick={[Function]}
+  />
+</header>
+`;
