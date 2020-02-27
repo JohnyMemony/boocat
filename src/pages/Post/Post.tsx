@@ -2,6 +2,7 @@ import * as React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {CatsState, getBreedData} from '../../store/cats/cats-store';
 import {ApplicationState} from '../../store/models';
+import PostContent from '../../components/post/PostContent/PostContent';
 
 export default function Post(props: any) {
   const {match} = props;
@@ -18,10 +19,7 @@ export default function Post(props: any) {
     <div className="post">
       {imageData && (
         <div className="container">
-          <div className="post__content">
-            <h1 className="post__title">Post page</h1>
-            <div className="post__image"></div>
-          </div>
+          <PostContent data={imageData}/>
         </div>
       )}
     </div>

@@ -1,0 +1,9 @@
+.pc-block {
+  display: flex;
+
+  &__name {
+    min-width: 100px;
+    flex-shrink: 0;
+    margin-right: 10px;
+  }
+}

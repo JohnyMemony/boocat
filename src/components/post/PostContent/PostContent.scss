@@ -1,0 +1,29 @@
+.post-content {
+  padding: 0 0 50px;
+
+  &__head {
+    margin-bottom: 25px;
+  }
+
+  &__title {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  &__image {
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__body {
+    .pc-block {
+      margin-bottom: 10px;
+    }
+
+    .post-specs {
+      margin-top: 50px;
+    }
+  }
+}
