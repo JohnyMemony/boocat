@@ -5,7 +5,9 @@ export default function Home() {
   return (
     <div className="home">
       <div className="container">
-        <BreedList/>
+        <div className="page-content">
+          <BreedList/>
+        </div>
       </div>
     </div>
   );

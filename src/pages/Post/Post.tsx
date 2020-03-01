@@ -19,7 +19,9 @@ export default function Post(props: any) {
     <div className="post">
       {imageData && (
         <div className="container">
-          <PostContent data={imageData}/>
+          <div className="page-content">
+            <PostContent data={imageData}/>
+          </div>
         </div>
       )}
     </div>

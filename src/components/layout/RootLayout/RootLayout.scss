@@ -1,5 +1,8 @@
 @import "../../../assets/styles/variables";
 
 .bc-page {
+  position: relative;
   padding-top: calc(#{$headerHeight} + 30px);
+  padding-bottom: 40px;
+  background: url(../../../assets/images/backgrounds/main-bg.jpg) repeat;
 }

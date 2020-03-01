@@ -14,6 +14,15 @@ require('dotenv').config();
 
 const {NODE_ENV, PORT} = process.env;
 
+const relativeFileLoader = (ext = '[ext]') => ({
+  loader: 'file-loader',
+  options: {
+    useRelativePath: true,
+    name: `[name].${ext}`,
+    context: resolve('src')
+  }
+});
+
 module.exports = {
   mode: NODE_ENV,
   devtool: 'source-map',
@@ -58,12 +67,12 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jpg|gif)$/,
-        use: [
-          {
-            loader: 'file-loader',
-          },
-        ],
+        test: /\.(jpe?g|png|gif|mp4)$/i,
+        loader: 'url-loader',
+        options: {
+          name: '[path][name]-[sha512:hash:base64:4].[ext]',
+          limit: 16384,
+        },
       },
       {
         test: /\.(woff|woff2|eot|ttf|svg)(\?.*$|$)/,
@@ -86,20 +95,13 @@ module.exports = {
           name: '[name].[ext]',
         },
       },
-      {
-        test: /\.(jpe?g|png|gif|mp4)$/i,
-        loader: 'file-loader',
-        options: {
-          name: '[path][name]-[sha512:hash:base64:4].[ext]',
-        },
-      },
     ],
   },
   optimization: {
     minimize: true,
     nodeEnv: NODE_ENV,
     minimizer: [
-      new OptimizeCssAssetsPlugin(),
+      // new OptimizeCssAssetsPlugin(),
     ],
   },
   plugins: [

@@ -26,7 +26,15 @@ input::-webkit-inner-spin-button {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1240px;
   margin: 0 auto;
-  padding: 0 $contentPadding;
+}
+
+.page-content {
+  background-color: $white;
+  padding: $contentPadding;
+}
+
+.main-content {
+  background-color: $white;
 }
